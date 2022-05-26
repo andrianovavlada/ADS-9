@@ -3,7 +3,7 @@
 #define INCLUDE_BST_H_
 template <typename T>
 class BST {
-private: 
+private:
     struct Node {
         T value;
         int count;
@@ -39,12 +39,12 @@ private:
             return searchNode(root->right, data);
         }
     }
-    int heightTree(Node *root) {
+    int depthTree(Node *root) {
         if (root == nullptr) {
             return 0;
         } else {
-           int L = heightTree(root->left);
-           int R = heightTree(root->right);
+           int L = depthTree(root->left);
+           int R = depthTree(root->right);
         }
         int L, R;
         if (L > R) {
@@ -54,7 +54,7 @@ private:
         }
     }
 
-public: 
+public:
     BST() :root(nullptr) {}
     void add(const T& data) {
         root = addNode(root, data);
@@ -62,8 +62,8 @@ public:
     int search(const T& data) {
         return searchNode(root, data);
     }
-    int height() {
-        return heightTree(root) - 1;
+    int depth() {
+        return depthTree(root) - 1;
     }
 };
 #endif  // INCLUDE_BST_H_
