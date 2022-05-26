@@ -3,8 +3,8 @@
 #define INCLUDE_BST_H_
 template <typename T>
 class BST {
-
 private:
+    
     struct Node {
         T value;
         int count;
@@ -13,15 +13,15 @@ private:
     };
 
     Node *root;
-    Node *addNode(Node *root, T& data) {
+    Node *addNode(Node *root, const T& data) {
         if (root == nullptr) {
             root = new Node;
             root->value = data;
             root->count = 1;
             root->left = root->right = nullptr;
-        }else if (data < root->value) {
+        } else if (data < root->value) {
             root->left = addNode(root->left, data);
-        }    else if (data > root->value) {
+        } else if (data > root->value) {
             root->right = addNode(root->right, data);
         } else {
             root->count++;
@@ -29,15 +29,14 @@ private:
         return root;
     }
 
-    int searchNode(Node* root, T& data) {
+    int searchNode(Node* root, const T& data) {
         if (root == nullptr) {
             return 0;
         } else if (root->value == data) {
             return root->count;
         } else if (root->value > data) {
             return searchNode(root->left, data);
-        }
-        else {
+        } else {
             return searchNode(root->right, data);
         }
     }
@@ -50,13 +49,13 @@ private:
         }
         if (L > R) {
             return L + 1;
-        }
-        else {
+        } else {
             return R + 1;
         }
     }
 
 public:
+    
     BST() :root(nullptr) {}
     void add(const T& data) {
         root = addNode(root, data);
